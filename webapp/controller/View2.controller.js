@@ -14,7 +14,6 @@ sap.ui.define([
                 "entertainment" : "",
                 "hospitality" : "",
                 "variableExpenses" : "",
-                // "savings" : "",
                 "userExpenditureTotal" : "",                        // store user expenditure total
                 "profitLossStatus": "",                          // store profit/loss status
                 "suggestions": "",                               // store suggestions

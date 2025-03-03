@@ -37,11 +37,9 @@
                 <RatingIndicator id="rating" maxValue="5" tooltip="Rate us" />
                 <TextArea id="feedbackText" placeholder="Write your feedback here..." rows="4" />
             </VBox>
-
             <endButton>
                 <Button text="Submit" type="Emphasized" press=".submitFeedback" />
             </endButton>
-
             <beginButton>
                 <Button text="Cancel" press=".closeFeedbackDialog" />
             </beginButton>
@@ -50,7 +48,6 @@
             <VBox class="thankYouContainer">
                 <Text text="Thank you for your valuable feedback!" />
             </VBox>
-            
             <endButton>
                 <Button text="Close" type="Emphasized" press=".closeThankYouDialog" />
             </endButton>

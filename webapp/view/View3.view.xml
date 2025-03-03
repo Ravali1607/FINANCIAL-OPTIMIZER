@@ -22,19 +22,16 @@
             <Table
                 id="employeeTable"
                 items="{/bankmaster}"
-                mode="MultiSelect"
                 selectionChange="onSelectionChange"
                 class="sapUiResponsiveMargin">
                 <headerToolbar>
                     <Toolbar>
                         <Title text="Bank Details" level="H2" />
                         <ToolbarSpacer />
-                        <!-- Filter Button -->
                         <Button
                             icon="sap-icon://filter"
                             tooltip="Filter"
                             press="onFilterPress" />
-                        <!-- Sort Button -->
                         <Button
                             icon="sap-icon://sort"
                             tooltip="Sort"

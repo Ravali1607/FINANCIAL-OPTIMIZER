@@ -8,7 +8,7 @@
     xmlns:viz.data="sap.viz.ui5.data"
     displayBlock="true"
     height="100%">
-     <Page title="Predict and manage your expenses effectively">
+    <Page title="Predict and manage your expenses effectively">
         <content>
             <VBox class="sapUiSmallMargin">
                 <!-- User Expenditure Values -->
@@ -125,6 +125,8 @@
                         </viz:feeds>
                     </viz:VizFrame>
                 </Panel>
+            
+                <!-- Monthly Table -->
                 <Panel headerText="Monthly spending overview " expandable="true" expanded="true" visible="{= !!${/monthlyData}}">
                     <Table items="{/monthlyData}" class="sapUiSmallMarginTop" id="monthlyDataTable">
                         <columns>
