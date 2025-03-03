@@ -1,0 +1,222 @@
+<mvc:View controllerName="fintracker.controller.View2"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    
+    xmlns:core="sap.ui.core"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    displayBlock="true"
+    height="100%">
+     <Page title="Predict and manage your expenses effectively">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <!-- User Expenditure Values -->
+                <Panel headerText="Spending breakdown" expandable="true" expanded="true">
+                    <VBox class="sapUiSmallMargin">
+                    <Label text="Month" labelFor="month"/>
+                        <Input id="month" type="Text" value="{/month}" placeholder="Enter month..." />
+                        <Label text="Salary" labelFor="salary"/>
+                        <Input id="salary" type="Number" value="{/salary}" placeholder="Enter your salary..." />
+
+                        <Label text="Bill Payments" labelFor="billPayments"/>
+                        <Input id="billPayments" type="Number" value="{/billPayments}" placeholder="Enter bill payments..." />
+
+                        <Label text="Grocery" labelFor="grocery"/>
+                        <Input id="grocery" type="Number" value="{/grocery}" placeholder="Enter grocery expenses..." />
+
+                        <Label text="Entertainment" labelFor="entertainment"/>
+                        <Input id="entertainment" type="Number" value="{/entertainment}" placeholder="Enter entertainment expenses..." />
+
+                        <Label text="Hospitality" labelFor="hospitality"/>
+                        <Input id="hospitality" type="Number" value="{/hospitality}" placeholder="Enter hospitality expenses..." />
+
+                        <Label text="Variable Expenses" labelFor="variableExpenses"/>
+                        <Input id="variableExpenses" type="Number" value="{/variableExpenses}" placeholder="Enter variable expenses..." />
+
+                        <Button
+                            text="Estimate Expenses"
+                            press=".onEstimateExpenses"
+                            class="sapUiSmallMarginTop"
+                            type="Emphasized" />
+                    </VBox>
+                </Panel>
+
+                <!-- Predicted Table -->
+                <Panel headerText="Expected Spending" expandable="true" expanded="true" visible="{= !!${/predictedValues}.length}">
+                    <Table
+                        id="predictionTable"
+                        class="sapUiSmallMargin"
+                        items="{
+                            path: '/predictedValues'
+                        }">
+                        <columns>
+                            <Column>
+                                <Text text="Category" />
+                            </Column>
+                            <Column>
+                                <Text text="Predicted Value" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{category}" />
+                                    <Text text="{path: 'value', formatter: '.formatCurrency'}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </Panel>
+
+                <!-- Employee Status -->
+                <Panel headerText="spending status" expandable="true" expanded="true" visible="{= !!${/profitLossStatus}}">
+                    <VBox class="sapUiSmallMargin">
+                        <Text text="Status: {/profitLossStatus}" class="profitLossStatus" />
+                        <TextArea
+                            value="{/suggestions}"
+                            editable="false"
+                            rows="6"
+                            width="100%"
+                            class="sapUiSmallMarginTop" />
+                    </VBox>
+                </Panel>
+
+                <!-- Predicted Values Table -->
+                <Panel headerText="Expense recap" expandable="true" expanded="true" visible="{= !!${/totalPredictedExpenses}}">
+                    <VBox class="sapUiSmallMargin">
+                        <Text text="Total Predicted Expenses: {/totalPredictedExpenses}" />
+                        <Text text="Remaining Salary: {/remainingSalary}" />
+                    </VBox>
+                </Panel>
+
+                <!-- Chart -->
+                <Panel headerText="Budget allocation" expandable="true" expanded="true" visible="{= !!${/predictedValues}.length}">
+                    <viz:Popover id="idPopover"/>
+                    <viz:VizFrame
+                        id="pieChart"
+                        vizType="pie"
+                        width="100%"
+                        height="400px">
+                        <viz:dataset>
+                            <viz.data:FlattenedDataset
+                                data="{expensesModel>/PredictedExpenses}">
+                                <viz.data:dimensions>
+                                    <viz.data:DimensionDefinition
+                                        name="Expense Type"
+                                        value="{expensesModel>label}" />
+                                </viz.data:dimensions>
+                                <viz.data:measures>
+                                    <viz.data:MeasureDefinition
+                                        name="Amount"
+                                        value="{expensesModel>value}" />
+                                </viz.data:measures>
+                            </viz.data:FlattenedDataset>
+                        </viz:dataset>
+                        <viz:feeds>
+                            <viz.feeds:FeedItem
+                                uid="size"
+                                type="Measure"
+                                values="Amount" />
+                            <viz.feeds:FeedItem
+                                uid="color"
+                                type="Dimension"
+                                values="Expense Type" />
+                        </viz:feeds>
+                    </viz:VizFrame>
+                </Panel>
+                <Panel headerText="Monthly spending overview " expandable="true" expanded="true" visible="{= !!${/monthlyData}}">
+                    <Table items="{/monthlyData}" class="sapUiSmallMarginTop" id="monthlyDataTable">
+                        <columns>
+                            <Column><Label text="Month" /></Column>
+                            <Column><Label text="Predicted Expenses" /></Column>
+                            <Column><Label text="Remaining Salary" /></Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem >
+                                <Text text="{month}"></Text>
+                                <Text text="{
+                                        path: 'totalPredictedExpenses',
+                                        formatter: '.formatCurrency'
+                                    }" />
+                                <Text text="{
+                                        path: 'remainingSalary',
+                                        formatter: '.formatCurrency'
+                                    }" />
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+            </Panel>
+            </VBox>
+        </content>
+        <!-- Navigation Footer -->
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button
+                    text="Back"
+                    press=".onNavBack"
+                    type="Back" />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+    </mvc:View>
+        <!-- <VBox>
+        <Text text="Monthly Salary: $30,000" />
+
+        <Label text="Fixed Expenses"/>
+        <Input id="fixed-expenses" value="{/fixedExpenses}" type="Number" />
+
+        <Label text="Variable Expenses"/>
+        <Input id="variable-expenses" value="{/variableExpenses}" type="Number" />
+
+        <Label text="Savings Goal (%)"/>
+        <Input id="savings-goal" value="{/savingsGoal}" type="Number" />
+
+        <Button text="Calculate Budget" press="onCalculateBudget" />
+
+        <Text id="savings-amount" text="Savings Goal: $0" />
+        <Text id="remaining-balance" text="Remaining Balance: $30,000" />
+    </VBox> -->
+
+    <!-- <form:SimpleForm >
+        <Label text="Monthly Salary" />
+        <Input id="salaryInput" type="Number" placeholder="Enter your salary..." />
+        <Label text="Fixed Expenses (e.g., rent, bills)" />
+        <Input id="fixedExpensesInput" type="Number" placeholder="Enter fixed expenses..." />
+
+        <Label text="Variable Expenses (e.g., groceries, entertainment)" />
+        <Input id="variableExpensesInput" type="Number" placeholder="Enter variable expenses..." />
+        <Label text="Savings Goal (%)" />
+        <Input id="savingsGoalInput" type="Number" placeholder="Enter savings goal..." />
+        <Button text="Predict Current Month Expenses" press="onPredictExpenses" />
+        <Label text="Predicted Expenses for Current Month:" />
+        <Text id="predictedExpensesText" />
+        <Label text="Financial Status" />
+        <Text id="profitLossText" />
+        <Label text="Balance"></Label>
+        <Text id="RemainingAmount"></Text>
+    </form:SimpleForm > -->
+
+    <!-- <Table id="display" items="{/oPredictedModel}">
+    <columns>
+        <Column>
+            <Text text="Month"/>
+        </Column>
+        <Column>
+            <Text text="Expenses"/>
+        </Column>
+        <Column>
+            <Text text="Remaining Amount"/>
+        </Column>
+    </columns>
+    <items>
+        <ColumnListItem >
+            <cells>
+            <Text text="Feb"></Text>
+                <Text id="pexpenses" />
+                <Text id="pdiff"/>
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table> -->
