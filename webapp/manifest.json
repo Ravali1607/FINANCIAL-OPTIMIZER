@@ -113,10 +113,10 @@
             },
             "routes": [
                 {
-                    "name": "View1",
+                    "name": "View5",
                     "pattern": "",
                     "target": [
-                        "TargetView1"
+                        "TargetView5"
                     ]
                 },
                 {
@@ -141,10 +141,10 @@
                     ]
                 },
                 {
-                    "name": "View5",
-                    "pattern": "View5",
+                    "name": "View1",
+                    "pattern": "View1",
                     "target": [
-                        "TargetView5"
+                        "TargetView1"
                     ]
                 }
             ],

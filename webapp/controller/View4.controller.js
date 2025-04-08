@@ -3,16 +3,18 @@ sap.ui.define([
     "sap/viz/ui5/data/FlattenedDataset",
     "sap/viz/ui5/controls/common/feeds/FeedItem",
     "sap/m/MessageBox"
-], (Controller, FlattenedDataset, FeedItem, MessageBox) => {
+], function (Controller, FlattenedDataset, FeedItem, MessageBox) {
     "use strict";
 
-    return Controller.extend("fintracker.controller.View4", {
-        onInit() {
+    return Controller.extend("financialhub.controller.View4", {
+        onInit: function () {
+            // Attach route matched event to load data when the view is displayed
             var oRouter = this.getOwnerComponent().getRouter();
             oRouter.getRoute("View4").attachMatched(this._onRouteMatched, this);
         },
-        _onRouteMatched: function (oEvent) {
-            // Load and bind the chart data
+
+        _onRouteMatched: function () {
+            // Load and bind the chart data when the view is matched
             this._loadAndBindChartData();
         },
 

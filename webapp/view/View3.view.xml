@@ -4,43 +4,55 @@
     xmlns:core="sap.ui.core">
     <Page
         id="page3"
-        title="Manage your loans and check eligibility"
-        showNavButton="true"
-        navButtonPress="NavBack"
-        class="sapUiResponsivePadding">
-        <headerContent>
+        title="Manage your loans and check eligibility"        
+        class="sapUiResponsivePadding" showHeader="false">
+        <Bar class="topHeader">
+            <contentLeft><Button icon="sap-icon://nav-back" press="NavBack"></Button></contentLeft>
+            <contentMiddle><Text text="Manage Your Loans And Check Eligibility" class="title"></Text></contentMiddle>
+        </Bar>
+        <Toolbar >
+            <ToolbarSpacer ></ToolbarSpacer>
             <!-- Search Field -->
             <SearchField
                 id="searchField"
                 width="auto"
                 placeholder="Search Bank Name"
-                search="onSearch"
+                liveChange="onSearch"
                 class="sapUiSmallMarginEnd" />
-        </headerContent>
+        </Toolbar>
         <content>
+        <Panel headerText="CIBIL Score" class="sapUiSmallMargin">
+                <Text text="Your CIBIL Score: {cibilModel>/cibilScore}" class="sapUiSmallMargin" />
+        </Panel>
+
             <!-- Table with Filter and Sort Options -->
             <Table
                 id="employeeTable"
                 items="{/bankmaster}"
-                selectionChange="onSelectionChange"
-                class="sapUiResponsiveMargin">
+                mode="SingleSelectMaster"
+                selectionChange="onRowPress"
+                >
                 <headerToolbar>
                     <Toolbar>
                         <Title text="Bank Details" level="H2" />
-                        <ToolbarSpacer />
-                        <Button
-                            icon="sap-icon://filter"
-                            tooltip="Filter"
-                            press="onFilterPress" />
-                        <Button
-                            icon="sap-icon://sort"
-                            tooltip="Sort"
-                            press="onSortPress" />
+                        <ToolbarSpacer ></ToolbarSpacer>
+                        <ComboBox items="{unique>/aBank}" showClearIcon="true" selectionChange="onComboBox" id="bankType" placeholder="Bank Type">
+                            <items>
+                                <core:Item text="{unique>}" key="{unique>}"></core:Item>
+                            </items>
+                        </ComboBox>
+
+                        <ComboBox items="{unique>/aLoan}" showClearIcon="true" selectionChange="onComboBox" id="loanType" placeholder="Loan Type">
+                            <items>
+                                <core:Item text="{unique>}" key="{unique>}"></core:Item>
+                            </items>
+                        </ComboBox>
                     </Toolbar>
+                    
                 </headerToolbar>
                 <columns>
                     <Column>
-                        <Text text="BID" />
+                        <Text text="Bank ID" />
                     </Column>
                     <Column>
                         <Text text="Bank Name" />
@@ -49,44 +61,52 @@
                         <Text text="Bank Type" />
                     </Column>
                     <Column>
-                        <Text text="Established" />
-                    </Column>
-                    <Column>
                         <Text text="Rate of Interest" />
-                    </Column>
-                    <Column>
-                        <Text text="Max Loan" />
                     </Column>
                     <Column>
                         <Text text="Min Loan" />
                     </Column>
                     <Column>
-                        <Text text="Tenure" />
+                        <Text text="Max Loan" />
                     </Column>
                     <Column>
-                        <Text text="Pre-Closure" />
+                        <Text text="Tenure" />
                     </Column>
                     <Column>
                         <Text text="Process Time" />
                     </Column>
                 </columns>
                 <items>
-                    <ColumnListItem>
+                    <ColumnListItem type="Active">
                         <cells>
                             <Text text="{BID}" />
                             <Text text="{BankName}" />
                             <Text text="{BankType}" />
-                            <Text text="{Bank_EST}" />
                             <Text text="{BANK_ROI}" />
-                            <Text text="{BANK_MAX_LOAN}" />
                             <Text text="{BANK_MIN_LOAN}" />
-                            <Text text="{BANK_MA_TEN}" />
-                            <Text text="{BANK_PREClosure}" />
+                            <Text text="{BANK_MAX_LOAN}" />
+                            <Text text="{BANK_MA_TEN} Years" />
                             <Text text="{BANK_PROCESSTYM}" />
                         </cells>
                     </ColumnListItem>
                 </items>
             </Table>
+            <Dialog id="sendQuotation" title="Confirmation">
+            <VBox class="Container" >
+                <Label text="Loan Amount" />
+                <Text id="amount" class="sapUiSmallMarginBottom sapUiSmallMarginLeft" />
+                <Label text="Tenure" />
+                <Text id="duration" class="sapUiSmallMarginBottom sapUiSmallMarginLeft" />
+                <Label text="Rate of Interest" />
+                <Text id="int" class="sapUiSmallMarginBottom sapUiSmallMarginLeft" />
+                <Label text="EMI" />
+                <Text id="emi" class="sapUiSmallMarginBottom sapUiSmallMarginLeft" />
+                <Label text="Total Repayable Amount" />
+                <Text id="repay" class="sapUiSmallMarginBottom sapUiSmallMarginLeft" />
+            </VBox>
+            <Button text="Send Quotation" type="Emphasized" press="send" />
+            <Button text="Close" type="Emphasized" press="closeDialog" />
+        </Dialog>
         </content>
     </Page>
 </mvc:View>

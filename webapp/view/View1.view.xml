@@ -1,49 +1,78 @@
 <mvc:View controllerName="fintracker.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
-    <Page id="page1" title="{i18n>title}">
+
+    <Page id="page1" >
+        <!-- Employee Details List -->
+        <List headerText="Employee Details" class="Details" items="{/employeemaster}">
+            <CustomListItem class="customListItem">
+                <HBox justifyContent="SpaceBetween" alignItems="Center">
+                    <!-- Left Side -->
+                    <HBox alignItems="Center" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+                        <!-- Employee Icon -->
+                        <StandardListItem icon="https://img.freepik.com/premium-vector/female-employee-avatar_505024-1162.jpg?w=360" class="Icon"></StandardListItem>
+                        <!-- Employee Details -->
+                        <VBox>
+                            <Text text="Employee Name: {EmpName}" class="sapUiTinyMarginBottom"/>
+                            <Text text="Employee ID: {EmpID}" class="sapUiTinyMarginBottom" />
+                            <Text text="Email: {EmpEmail}" class="sapUiTinyMarginBottom" />
+                        </VBox>
+                    </HBox>
+
+                    <!-- Right Side -->
+                    <VBox alignItems="End" class="sapUiSmallMarginEnd sapUiSmallMarginTopBottom">
+                        <Text text="Contact Number: {EmpCont}" class="sapUiSmallMarginBottom" />
+                        <ObjectStatus text="Position: {EmpDesig}" class="Department"/>
+                    </VBox>
+                </HBox>
+            </CustomListItem>
+        </List>
+
+        <!-- Dashboard Options List -->
         <List headerText="Dashboard Options" class="customList">
-            
-            <ObjectListItem
+            <StandardListItem
                 title="Financial Forecast"
                 icon="sap-icon://money-bills"
                 type="Active"
                 press=".onExpenditurePrediction"
-                intro="Stay ahead of your budget- Forecast your spending today!" />
-
-            <ObjectListItem
+                description="Stay ahead of your budget - Forecast your spending today!" />
+            <StandardListItem
                 title="Credit Solutions"
                 icon="sap-icon://loan"
                 type="Active"
                 press=".onLoans"
-                intro="Empowering your dreams- Find the perfect loan for you!" />
+                description="Empowering your dreams - Find the perfect loan for you!" />
 
-            <ObjectListItem
+            <StandardListItem
                 title="Account Activity"
                 icon="sap-icon://accounting-document-verification"
                 type="Active"
                 press=".onWalletHistory"
-                intro="Stay organised- Keep track of your Wallet activity!" />
+                description="Stay organised - Keep track of your Wallet activity!" />
 
-            <ObjectListItem
+            <StandardListItem
                 title="Feedback"
                 icon="sap-icon://feedback"
                 type="Active"
                 press=".openFeedbackDialog"
-                intro="Your feedback shapes our future- share it today!" />
+                description="Your feedback shapes our future - Share it today!" />
         </List>
-        <Dialog id="feedbackDialog" title="We Value Your Feedback">
+
+        <!-- Feedback Dialog -->
+        <Dialog id="feedbackDialog" title="We Value Your Feedback" class="feedbackDialog">
             <VBox class="feedbackContainer">
-                <RatingIndicator id="rating" maxValue="5" tooltip="Rate us" />
-                <TextArea id="feedbackText" placeholder="Write your feedback here..." rows="4" />
+                <RatingIndicator id="rating" maxValue="5" tooltip="Rate us" class="ratingIndicator" />
+                <TextArea id="feedbackText" placeholder="Write your feedback here..." rows="4" class="feedbackTextArea" />
             </VBox>
             <endButton>
-                <Button text="Submit" type="Emphasized" press=".submitFeedback" />
+                <Button text="Submit" type="Emphasized" press=".submitFeedback" class="submitButton" />
             </endButton>
             <beginButton>
-                <Button text="Cancel" press=".closeFeedbackDialog" />
+                <Button text="Cancel" press=".closeFeedbackDialog" class="cancelButton" />
             </beginButton>
         </Dialog>
+
+        <!-- Thank You Dialog -->
         <Dialog id="thankYouDialog" title="Thank You">
             <VBox class="thankYouContainer">
                 <Text text="Thank you for your valuable feedback!" />
@@ -52,5 +81,8 @@
                 <Button text="Close" type="Emphasized" press=".closeThankYouDialog" />
             </endButton>
         </Dialog>
+
+        <!-- Login Button -->
+        <!-- <Button text="Login" press=".onNav5" /> -->
     </Page>
 </mvc:View>

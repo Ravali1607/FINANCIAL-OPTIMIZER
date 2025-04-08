@@ -1,14 +1,20 @@
-<mvc:View controllerName="fintracker.controller.View4"
+<mvc:View
+    controllerName="fintracker.controller.View4"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:viz="sap.viz.ui5.controls"
     xmlns:layout="sap.ui.layout"
     xmlns:core="sap.ui.core">
-      <Page
-        title="View your wallet transactions and history"
-        showNavButton="true"
-        navButtonPress="onNavBack">
-        <content>
+    <Page showHeader="false">
+         <Bar class="topHeader">
+            <contentLeft>
+                <Button icon="sap-icon://nav-back" press="onNavBack" />
+            </contentLeft>
+            <contentMiddle>
+                <Text text="View Your Wallet Transactions And History" class="title" />
+            </contentMiddle>
+        </Bar>
+        <content >
             <VBox class="sapUiSmallMargin">
                 <!-- VizFrame for Chart -->
                 <viz:VizFrame

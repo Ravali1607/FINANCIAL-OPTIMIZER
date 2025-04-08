@@ -1,16 +1,82 @@
 .customList {
     background-color: #d7e8d4;
     border-radius: 12px;
-    padding: 10px;
+    padding: 30px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s ease-in-out;
 }
 .customList:hover {
     transform: scale(1.03);
 }
-.feedbackContainer {
-    gap: 10px;
-    padding: 10px;
+.Details{
+    background-color: #d7e8d4;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.Department{
+    font-weight: bold;
+    font-size: medium;
+}
+.title{
+    font-weight: bold;
+}
+/* Custom Dialog Styling */
+.feedbackDialog .sapMDialogTitle {
+    color: #333;
+    text-align: left;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+.feedbackDialog .sapMDialogContent {
+    padding: 1.5rem;
+    background-color: #fff;
+}
+/* Rating Indicator Styling */
+.ratingIndicator {
+    margin-bottom: 1.5rem;
+    padding-left:1.5rem;
+}
+.ratingIndicator .sapMRI {
+    font-size: 2rem;
+    color: #ffc107; /* Gold color for stars */
+}
+/* TextArea Styling */
+.feedbackTextArea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    resize: vertical; /* Allow vertical resizing */
+}
+.feedbackTextArea:focus {
+    border-color: #0070f2; /* Highlight border on focus */
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 112, 242, 0.2);
+}
+/* Button Styling */
+.submitButton {
+    background-color: #0070f2;
+    color: #fff;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.submitButton:hover {
+    background-color: #005bb5;
+}
+.cancelButton {
+    background-color: #f4f4f4;
+    color: #333;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+}
+.cancelButton:hover {
+    background-color: #e0e0e0;
 }
 .thankYouContainer {
     text-align: center;
@@ -18,7 +84,6 @@
     font-size: 1.2rem;
     font-weight: bold;
 }
-
 .customVBoxBackground {
     background-color: #ffffff;
     padding: 20px;
@@ -26,26 +91,33 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     margin: 16px;
 }
-
 .customListBackground {
     background: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
     padding: 12px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    
 }
-
-.sapMIBar.sapMHeader-CTX {
+.topHeader{
     color: var(--sapPageHeader_TextColor);
     background-color: #a3cf9a;
     filter: none;
     background-image: none;
-    
+    font-weight: bold;
+    text-align:center
 }
+/* .sapMIBar.sapMHeader-CTX {
+    color: var(--sapPageHeader_TextColor);
+    background-color: #a3cf9a;
+    filter: none;
+    background-image: none;
+    font-weight: bold;
+    text-align:center
+} */
 .sapMPageEnableScrolling {
     overflow-y: auto;
     will-change: scroll-position;
 }
-
 .customVBoxBackground {
     background-color: #b7e1be;
     padding: 20px;
@@ -53,17 +125,12 @@
     box-shadow: blue;
     margin: 16px;
 }
-
-
-
-
 /* Apply background color to the entire view */
 .customViewBackground {
     background-color: #f4f6f9;
     height: 100%;
     padding: 10px;
 }
-
 /* Style the page background */
 .customPageBackground {
     background-color: #ffffff;
@@ -71,7 +138,6 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
 }
-
 /* Style the form background */
 .customFormBackground {
     background-color: #d7e8d4 !important;
@@ -79,7 +145,6 @@
     border-radius: 8px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
-
 .customTableBackground {
     background-color: #e3e7ed !important;
     border-radius: 8px;
@@ -87,8 +152,6 @@
     margin-top: 20px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
-
-
 /* Style input fields */
 .customInput {
     background-color: #ffffff;
@@ -97,7 +160,6 @@
     padding: 8px;
     width: 100%;
 }
-
 /* Style buttons */
 .customButton {
     background-color: #5a6f89;
@@ -109,11 +171,9 @@
     margin: 10px auto;
     width: fit-content;
 }
-
 .customButton:hover {
     background-color: #4a5e76;
 }
-
 /* Style the table background */
 /* .customTableBackground {
     background-color: #d7e8d4;
@@ -122,19 +182,16 @@
     margin-top: 20px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 } */
-
 /* Style table rows */
 .customTableRowBackground {
     background-color: #ffffff;
     border-bottom: 1px solid #ddd;
 }
-
 /* Style text elements */
 .customText {
     font-weight: bold;
     color: #333;
 }
-
 /* Highlight VBox effectively */
 VBox {
     display: flex;
@@ -147,73 +204,93 @@ VBox {
     box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15);
     gap: 10px; /* Adds space between child elements */
 }
-.profitLossStatus {
+.profitLossStatus{
     font-size: 1.5rem;
     font-weight: bold;
     color: green; /* Default color for profit */
 }
-
 .profitLossStatus[text*="Loss"] {
     color: red; /* Color for loss */
 }
-
 .profitLossStatus[text*="Break-even"] {
     color: blue; /* Color for break-even */
 }
-
 /* Custom CSS for the Table */
 .myTable .sapMListTblHeader {
     background-color: #f7f7f7; /* Light gray background for the header */
     font-weight: bold; /* Bold text for the header */
     color: #333333; /* Dark gray text color */
 }
-
 .myTable .sapMListTblCell {
     padding: 0.75rem; /* Add padding to table cells */
     border-bottom: 1px solid #ddd; /* Add a border between rows */
 }
-
 .myTable .sapMListTblRow {
     background-color: #ffffff; /* White background for rows */
 }
-
 .myTable .sapMListTblRow:hover {
     background-color: #f0f0f0; /* Light gray background on hover */
 }
-
 .myTable .sapMListTblSelRow {
     background-color: #e0f7fa; /* Light blue background for selected rows */
 }
-
 .myTable .sapMListTblCell.sapMListTblCellNoData {
     text-align: center; /* Center-align "No Data" message */
     font-style: italic; /* Italicize "No Data" message */
     color: #666666; /* Gray color for "No Data" message */
 }
-
 /* Styling for the table header */
 .myTable .sapMListTblHeader .sapMListTblCell {
     border-bottom: 2px solid #0070b1; /* Blue border for the header */
 }
-
 /* Styling for alternating row colors */
 .myTable .sapMListTblRow:nth-child(even) {
     background-color: #f9f9f9; /* Light gray background for even rows */
 }
-
 /* Styling for the toolbar */
 .myTable .sapMTB-Transparent-CTX {
     background-color: #f7f7f7; /* Light gray background for the toolbar */
     border-bottom: 1px solid #ddd; /* Add a border below the toolbar */
 }
-
 /* Styling for the search field */
 .myTable .sapMSF {
     width: 200px; /* Set a fixed width for the search field */
     margin-right: 1rem; /* Add margin to the right of the search field */
 }
-
 /* Styling for the filter and sort buttons */
 .myTable .sapMBtn {
     margin-left: 0.5rem; /* Add margin between buttons */
+}
+/* Center the VBox content */
+.centeredBox {
+    width: 300px; /* Set a fixed width for the box */
+    padding: 2rem; /* Add padding inside the box */
+    background-color: #ffffff; /* White background */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    position: absolute; /* Position the box absolutely */
+    top: 50%; /* Move the box down by 50% of the page height */
+    left: 50%; /* Move the box right by 50% of the page width */
+    transform: translate(-50%, -50%); /* Center the box */
+}
+
+/* Style the header */
+.topHeader .sapMBarPH {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style the title text */
+.topHeader .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50; /* Dark blue color */
+}
+
+/* Style the input field */
+#usernameInput {
+    width: 100%; /* Make the input field fill the box */
+    margin-bottom: 1rem; /* Add spacing below the input */
 }
